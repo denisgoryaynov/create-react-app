@@ -77,9 +77,9 @@ const resolveModule = (resolveFn, filePath) => {
 module.exports = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
-  appBuild: resolveApp('build'),
+  appBuild: resolveApp('build/app'),
   appPublic: resolveApp('public'),
-  appHtml: resolveApp('public/index.html'),
+  appHtml: resolveApp('public/index.html.js'),
   appIndexJs: resolveModule(resolveApp, 'src/index'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
@@ -101,7 +101,7 @@ module.exports = {
   appPath: resolveApp('.'),
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
-  appHtml: resolveApp('public/index.html'),
+  appHtml: resolveApp('public/index.html.js'),
   appIndexJs: resolveModule(resolveApp, 'src/index'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
@@ -135,7 +135,7 @@ if (
     appPath: resolveApp('.'),
     appBuild: resolveOwn('../../build'),
     appPublic: resolveOwn('template/public'),
-    appHtml: resolveOwn('template/public/index.html'),
+    appHtml: resolveOwn('template/public/index.html.js'),
     appIndexJs: resolveModule(resolveOwn, 'template/src/index'),
     appPackageJson: resolveOwn('package.json'),
     appSrc: resolveOwn('template/src'),
@@ -156,3 +156,6 @@ if (
 // @remove-on-eject-end
 
 module.exports.moduleFileExtensions = moduleFileExtensions;
+
+//custom property: server path
+module.exports.appServerJs = resolveModule(resolveApp, 'src/server/index');
