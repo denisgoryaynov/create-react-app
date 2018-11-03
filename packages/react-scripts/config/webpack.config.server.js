@@ -31,7 +31,7 @@ module.exports = Object.assign({}, config, {
     nodeExternals(),
     // this file is available only after build, this way it won't be compiled
     // during server bundling
-    '.index.html.js',
+    './index.html.js',
   ],
   node: Object.assign({}, config.node, {
     __dirname: false,
