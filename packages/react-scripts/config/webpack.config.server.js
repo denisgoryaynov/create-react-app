@@ -27,7 +27,12 @@ module.exports = Object.assign({}, config, {
     //using only minimizer option to avoid getting server files split in chunks
     minimizer: config.optimization.minimizer,
   },
-  externals: [nodeExternals()],
+  externals: [
+    nodeExternals(),
+    // this file is available only after build, this way it won't be compiled
+    // during server bundling
+    '.index.html.js',
+  ],
   node: Object.assign({}, config.node, {
     __dirname: false,
     __pathname: false,
