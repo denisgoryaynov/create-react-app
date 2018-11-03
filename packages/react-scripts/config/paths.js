@@ -99,7 +99,7 @@ const resolveOwn = relativePath => path.resolve(__dirname, '..', relativePath);
 module.exports = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
-  appBuild: resolveApp('build'),
+  appBuild: resolveApp('build/app'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html.js'),
   appIndexJs: resolveModule(resolveApp, 'src/index'),
@@ -133,7 +133,7 @@ if (
   module.exports = {
     dotenv: resolveOwn('template/.env'),
     appPath: resolveApp('.'),
-    appBuild: resolveOwn('../../build'),
+    appBuild: resolveOwn('../../build/app'),
     appPublic: resolveOwn('template/public'),
     appHtml: resolveOwn('template/public/index.html.js'),
     appIndexJs: resolveModule(resolveOwn, 'template/src/index'),

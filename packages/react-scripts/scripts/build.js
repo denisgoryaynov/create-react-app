@@ -64,8 +64,8 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
 const argv = process.argv.slice(2);
 const writeStatsJson = argv.indexOf('--stats') !== -1;
 
-function logBuildTaskCompletion(taskName, { stats, previousFileSizes }) {
-  console.log(`${taskName}:`);
+function promiseHandlerResolve({ stats, previousFileSizes }) {
+  console.log(chalk.green('Compiled successfully'));
   printFileSizesAfterBuild(
     stats,
     previousFileSizes,
@@ -74,6 +74,14 @@ function logBuildTaskCompletion(taskName, { stats, previousFileSizes }) {
     WARN_AFTER_CHUNK_GZIP_SIZE
   );
   console.log();
+
+  return previousFileSizes;
+}
+
+function promiseHandlerReject(err) {
+  console.log(chalk.red('Failed to compile.\n'));
+  printBuildError(err);
+  process.exit(1);
 }
 
 // We require that you explicitly set browsers and do not fall back to
@@ -92,35 +100,24 @@ checkBrowsers(paths.appPath, isInteractive)
     // Merge with the public folder
     copyPublicFolder();
 
-    console.log('Creating an optimized production build...');
+    console.log('Creating an optimized production build...\n');
+    console.log(chalk.yellow('Compiling client-side code...'));
 
     // Start the webpack build
 
-    return Promise.all([
-      build(previousFileSizes, clientConfig),
-      build(previousFileSizes, serverConfig),
-    ]);
+    return build(previousFileSizes, clientConfig);
   })
-  .then(
-    ([client, server]) => {
-      console.log('File sizes after gzip:\n');
+  .then(promiseHandlerResolve, promiseHandlerReject)
+  .then(previousFileSizes => {
+    console.log(chalk.yellow('Compiling server-side code...'));
 
-      logBuildTaskCompletion('Client', client);
-      logBuildTaskCompletion('Server', server);
-
-      console.log(chalk.green('Compiled successfully!'));
-    },
-    err => {
-      console.log(chalk.red('Failed to compile.\n'));
-      printBuildError(err);
-      process.exit(1);
-    }
-  )
+    return build(previousFileSizes, serverConfig);
+  })
+  .then(promiseHandlerResolve, promiseHandlerReject)
   .catch(err => {
     if (err && err.message) {
       console.log(err.message);
     }
-    process.exit(1);
   });
 
 // Create the production build and print the deployment instructions.
