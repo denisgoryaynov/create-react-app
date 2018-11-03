@@ -80,7 +80,7 @@ module.exports = {
   appBuild: resolveApp('build/app'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html.js'),
-  appIndexJs: resolveModule(resolveApp, 'src/index'),
+  appIndexJs: resolveModule(resolveApp, 'src/client'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   appTsConfig: resolveApp('tsconfig.json'),
@@ -102,7 +102,7 @@ module.exports = {
   appBuild: resolveApp('build/app'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html.js'),
-  appIndexJs: resolveModule(resolveApp, 'src/index'),
+  appIndexJs: resolveModule(resolveApp, 'src/client'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   appTsConfig: resolveApp('tsconfig.json'),
@@ -158,4 +158,4 @@ if (
 module.exports.moduleFileExtensions = moduleFileExtensions;
 
 //custom property: server path
-module.exports.appServerJs = resolveModule(resolveApp, 'src/server/index');
+module.exports.appServerJs = resolveModule(resolveApp, 'src/server');
