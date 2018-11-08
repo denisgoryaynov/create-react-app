@@ -1,6 +1,6 @@
 {
-  "name": "react-scripts",
-  "version": "2.1.1",
+  "name": "ventie30-scripts",
+  "version": "2.1.11",
   "description": "Configuration and scripts for Create React App.",
   "repository": "facebook/create-react-app",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "utils"
   ],
   "bin": {
-    "react-scripts": "./bin/react-scripts.js"
+    "ventie30-scripts": "./bin/react-scripts.js"
   },
   "types": "./lib/react-app.d.ts",
   "dependencies": {
