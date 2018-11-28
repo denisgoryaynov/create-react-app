@@ -82,6 +82,7 @@ module.exports = {
   appHtml: resolveApp('public/index.html'),
   appHtmlTemplate: resolveApp('public/index.html.js'),
   appIndexJs: resolveModule(resolveApp, 'src/client'),
+  appServerJs: resolveModule(resolveApp, 'src/server'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   appTsConfig: resolveApp('tsconfig.json'),
@@ -105,6 +106,7 @@ module.exports = {
   appHtml: resolveApp('public/index.html'),
   appHtmlTemplate: resolveApp('public/index.html.js'),
   appIndexJs: resolveModule(resolveApp, 'src/client'),
+  appServerJs: resolveModule(resolveApp, 'src/server'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   appTsConfig: resolveApp('tsconfig.json'),
@@ -138,8 +140,9 @@ if (
     appBuild: resolveOwn('../../build/app'),
     appPublic: resolveOwn('template/public'),
     appHtml: resolveOwn('template/public/index.html'),
-    appHtmlTemplate: resolveApp('public/index.html.js'),
+    appHtmlTemplate: resolveApp('template/index.html.js'),
     appIndexJs: resolveModule(resolveOwn, 'template/src/index'),
+    appServerJs: resolveModule(resolveApp, 'src/server'),
     appPackageJson: resolveOwn('package.json'),
     appSrc: resolveOwn('template/src'),
     appTsConfig: resolveOwn('template/tsconfig.json'),
@@ -159,6 +162,3 @@ if (
 // @remove-on-eject-end
 
 module.exports.moduleFileExtensions = moduleFileExtensions;
-
-//custom property: server path
-module.exports.appServerJs = resolveModule(resolveApp, 'src/server');

@@ -31,6 +31,7 @@ const verifyTypeScriptSetup = require('./utils/verifyTypeScriptSetup');
 verifyTypeScriptSetup();
 // @remove-on-eject-end
 
+const path = require('path');
 const chalk = require('chalk');
 const fs = require('fs-extra');
 const webpack = require('webpack');
@@ -56,7 +57,7 @@ const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
 const isInteractive = process.stdout.isTTY;
 
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
+if (!checkRequiredFiles([paths.appHtmlTemplate, paths.appIndexJs])) {
   process.exit(1);
 }
 
@@ -114,6 +115,14 @@ checkBrowsers(paths.appPath, isInteractive)
     return build(previousFileSizes, serverConfig);
   })
   .then(promiseHandlerResolve, promiseHandlerReject)
+  .then(() => {
+    const htmlTemplate = require(path.resolve(paths.appBuild, 'index.html.js'));
+
+    return fs.writeFileSync(
+      path.resolve(paths.appBuild, 'index.html'),
+      htmlTemplate()
+    );
+  })
   .catch(err => {
     if (err && err.message) {
       console.log(err.message);

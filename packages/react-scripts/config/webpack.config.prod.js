@@ -485,22 +485,6 @@ module.exports = {
         minifyURLs: true,
       },
     }),
-    new HtmlWebpackPlugin({
-      inject: true,
-      template: paths.appHtml,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true,
-      },
-    }),
     // Inlines the webpack runtime script. This script is too small to warrant
     // a network request.
     shouldInlineRuntimeChunk &&

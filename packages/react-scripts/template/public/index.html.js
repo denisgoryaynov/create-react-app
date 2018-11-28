@@ -1,5 +1,5 @@
 module.exports = () => `
-  module.exports = (content, preloadedState, head) => \`
+  module.exports = (content = '', preloadedState = {}, head = '') => \`
     <!DOCTYPE html>
     <html lang="en">
       <head>
@@ -21,7 +21,6 @@ module.exports = () => `
           work correctly both with client-side routing and a non-root public URL.
           Learn how to configure a non-root public URL by running \`npm run build\`.
         -->
-        <title>React App</title>
         \${head}
       </head>
       <body>
