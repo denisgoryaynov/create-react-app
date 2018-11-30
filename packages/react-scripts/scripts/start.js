@@ -31,6 +31,7 @@ const verifyTypeScriptSetup = require('./utils/verifyTypeScriptSetup');
 verifyTypeScriptSetup();
 // @remove-on-eject-end
 
+const path = require('path');
 const fs = require('fs');
 const chalk = require('chalk');
 const webpack = require('webpack');
@@ -85,6 +86,14 @@ checkBrowsers(paths.appPath, isInteractive)
     // We attempt to use the default port but if it is busy, we offer the user to
     // run on a different port. `choosePort()` Promise resolves to the next free port.
     return choosePort(HOST, DEFAULT_PORT);
+  })
+  .then(() => {
+    const htmlTemplate = require(path.resolve(paths.appBuild, 'index.html.js'));
+
+    return fs.writeFileSync(
+      path.resolve(paths.appBuild, 'index.html'),
+      htmlTemplate()
+    );
   })
   .then(port => {
     if (port == null) {
