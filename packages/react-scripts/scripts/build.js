@@ -32,11 +32,11 @@ verifyTypeScriptSetup();
 // @remove-on-eject-end
 
 const path = require('path');
-const chalk = require('chalk');
+const chalk = require('react-dev-utils/chalk');
 const fs = require('fs-extra');
 const webpack = require('webpack');
 const bfj = require('bfj');
-const clientConfig = require('../config/webpack.config.prod');
+const clientConfigFactory = require('../config/webpack.config');
 const serverConfig = require('../config/webpack.config.server');
 const paths = require('../config/paths');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
@@ -84,6 +84,9 @@ function promiseHandlerReject(err) {
   printBuildError(err);
   process.exit(1);
 }
+
+// Generate configuration
+const clientConfig = clientConfigFactory('production');
 
 // We require that you explicitly set browsers and do not fall back to
 // browserslist defaults.
