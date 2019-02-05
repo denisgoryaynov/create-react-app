@@ -82,13 +82,6 @@ if (process.env.HOST) {
 const { checkBrowsers } = require('react-dev-utils/browsersHelper');
 checkBrowsers(paths.appPath, isInteractive)
   .then(() => {
-    const htmlTemplate = require(path.resolve(paths.appBuild, 'index.html.js'));
-
-    fs.writeFileSync(
-      path.resolve(paths.appBuild, 'index.html'),
-      htmlTemplate()
-    );
-
     // We attempt to use the default port but if it is busy, we offer the user to
     // run on a different port. `choosePort()` Promise resolves to the next free port.
     return choosePort(HOST, DEFAULT_PORT);

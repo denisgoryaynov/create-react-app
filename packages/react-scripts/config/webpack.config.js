@@ -522,8 +522,6 @@ module.exports = function(webpackEnv) {
           {},
           {
             inject: true,
-            template: paths.appHtmlTemplate,
-            filename: 'index.html.js',
           },
           isEnvProduction
             ? {
@@ -540,7 +538,16 @@ module.exports = function(webpackEnv) {
                   minifyURLs: true,
                 },
               }
-            : undefined
+            : undefined,
+          isEnvProduction
+            ? {
+                template: paths.appHtmlTemplate,
+                filename: 'index.html.js',
+              }
+            : {
+                template: paths.appHtml,
+                filename: 'index.html',
+              }
         )
       ),
       // Inlines the webpack runtime script. This script is too small to warrant
