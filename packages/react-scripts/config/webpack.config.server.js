@@ -7,7 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 
 const getClientEnvironment = require('./env');
-const configFactory = require('./webpack.config.prod');
+const configFactory = require('./webpack.config');
 const paths = require('./paths');
 
 const env = getClientEnvironment();
