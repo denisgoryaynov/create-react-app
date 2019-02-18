@@ -7,10 +7,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 
 const getClientEnvironment = require('./env');
-const config = require('./webpack.config.prod');
+const configFactory = require('./webpack.config.prod');
 const paths = require('./paths');
 
 const env = getClientEnvironment();
+
+const config = configFactory('production')
 
 module.exports = Object.assign({}, config, {
   target: 'node',
